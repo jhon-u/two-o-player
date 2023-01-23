@@ -14,7 +14,7 @@ class Game
   end
 
   def score
-    puts 'The score goes here'
+    puts "P1: #{@player1.lives}/3 vs P2: #{@player2.lives}/3"
   end
 
   def turn
@@ -22,11 +22,10 @@ class Game
     until @player1.lives.zero? || @player2.lives.zero?
       question = Question.new
       player_answer = question.answer?(current_player)
-      # puts "Answer #{player_answer} #{current_player.name}"
       process_results(player_answer, current_player)
-
       current_player = current_player == @player1 ? @player2 : @player1
     end
+    winner(current_player)
   end
 
   def process_results(result, player)
@@ -35,11 +34,13 @@ class Game
     else
       puts 'Seriously? No!'
       player.lose_life
-      puts "Remaining lives #{player.name}: #{player.lives}"
     end
+    score
+    puts '----- NEW TURN -----'
   end
 
-  def winner
-    puts 'Displays the winner'
+  def winner(player)
+    puts "#{player.name} wins with a score of #{player.lives}/3"
+    puts '----- GAME OVER -----'
   end
 end
