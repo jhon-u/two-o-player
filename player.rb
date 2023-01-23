@@ -2,12 +2,15 @@
 
 # Creates a new player
 class Player
+  attr_accessor :lives
+  attr_reader :name
+
   def initialize(name)
     @name = name
-    @lives = lives
+    @lives = 3
   end
 
-  def lives
-    puts 'Keeps track of the player\'s lives'
+  def lose_life
+    @lives -= 1
   end
 end
