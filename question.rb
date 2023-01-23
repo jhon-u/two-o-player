@@ -2,17 +2,18 @@
 
 # Creates a new math question
 class Question
-  def initialize
-    @number1 = number1
-    @number2 = number2
-    @result = @number1 + @number2
+  @number1 = rand(50)
+  @number2 = rand(50)
+  @answer = @number1 + @number2
+
+  def answer?(player_input)
+    @result == player_input
   end
 
-  def new_question
-    puts 'Asks the question'
-  end
-
-  def answer
-    puts 'Checks the answer'
+  def question(player)
+    @question = "#{player}: What does #{@number1} plus #{@number2} equal?"
+    puts '> '
+    player_input = $stdin.gets.chomp
+    @answer == player_input
   end
 end
